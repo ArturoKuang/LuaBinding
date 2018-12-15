@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "LuaScript.h"
 
-class ScriptEntity : Entity
+class ScriptEntity : public Entity
 {
 public:
 	ScriptEntity(char* n);
