@@ -5,7 +5,7 @@
 #include "SimpleShader.h"
 
 using namespace DirectX;
-class Object3D : Entity
+class Object3D : public Entity
 {
 private:
 	XMFLOAT4X4 worldMatrix;
@@ -17,8 +17,6 @@ public:
 	Object3D(char* n, Mesh* m);
 	~Object3D();
 
-	void OnFrame(float dt);
-	
 	//Getters
 	XMFLOAT4X4 getWorldMatrix() { return worldMatrix; }
 	XMFLOAT3 getPosition() { return position; }
@@ -32,10 +30,12 @@ public:
 	void setPosition(XMFLOAT3 newPos) { position = newPos; }
 	void setRotation(XMFLOAT3 newRot) { rotation = newRot; }
 	void setScale(XMFLOAT3 newScale) { scale = newScale; }
-	void setPixelShdaer(SimplePixelShader* p) { pShader = p; }
+	void setPixelShader(SimplePixelShader* p) { pShader = p; }
 	void setVertexShader(SimpleVertexShader* v) { vShader = v; }
 
-	void Draw(ID3D11DeviceContext* ctx, XMFLOAT4X4 view, XMFLOAT4X4 projection);
+	void OnFrame(float dt) override;
+	void OnStart() override;
+	void Draw(ID3D11DeviceContext* ctx, XMFLOAT4X4 view, XMFLOAT4X4 projection) override;
 	void Move(float x, float y, float z);
 };
 
