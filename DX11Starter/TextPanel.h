@@ -8,6 +8,7 @@ public:
 	TextPanel(char* n);
 	~TextPanel();
 
-	void OnFrame();
+	void OnFrame(float dt);
+	void OnStart();
 };
 

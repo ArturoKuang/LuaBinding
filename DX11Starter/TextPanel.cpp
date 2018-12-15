@@ -11,6 +11,10 @@ TextPanel::~TextPanel()
 {
 }
 
-void TextPanel::OnFrame()
+void TextPanel::OnFrame(float dt)
+{
+}
+
+void TextPanel::OnStart()
 {
 }
