@@ -1,10 +1,11 @@
 #pragma once
-
+#include "stdafx.h"
 #include "DXCore.h"
 #include "SimpleShader.h"
 #include <DirectXMath.h>
 #include "Mesh.h"
 #include "ScriptManager.h"
+
 
 class Game 
 	: public DXCore

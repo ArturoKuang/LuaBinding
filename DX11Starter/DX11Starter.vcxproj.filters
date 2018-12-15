@@ -1,26 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="PixelShader.hlsl" />
-    <FxCompile Include="VertexShader.hlsl" />
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DXCore.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="LuaScript.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="SimpleShader.cpp" />
-    <ClCompile Include="ScriptManager.cpp" />
+    <ClCompile Include="LuaScript.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptManager.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="DXCore.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleShader.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\additional\Imgui\imgui.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\additional\Imgui\imgui_draw.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\additional\Imgui\imgui_impl_dx11.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\additional\Imgui\imgui_impl_win32.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\additional\Imgui\imgui_widgets.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DXCore.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="LuaScript.h" />
-    <ClInclude Include="SimpleShader.h" />
-    <ClInclude Include="Vertex.h" />
-    <ClInclude Include="assert.hpp" />
-    <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="LuaScript.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptManager.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="assert.hpp">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="DXCore.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleShader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imconfig.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imgui.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imgui_impl_dx11.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imgui_impl_win32.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imgui_internal.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imstb_rectpack.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imstb_textedit.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\additional\Imgui\imstb_truetype.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Imgui">
+      <UniqueIdentifier>{18fd6553-045f-4d6c-a9fd-fc65101612f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{0e1346eb-7b49-45b4-b4a1-bb8e79606179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{18384aff-79f1-4c95-bfbf-2498dedbeefc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{d2b489bb-866c-443b-9df0-61f409781431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{340fa5e7-b6c6-4395-9441-495b7c16d3ac}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\additional\Imgui\.travis.yml">
+      <Filter>Imgui</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\additional\Imgui\LICENSE.txt">
+      <Filter>Imgui</Filter>
+    </Text>
   </ItemGroup>
 </Project>

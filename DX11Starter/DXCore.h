@@ -1,5 +1,5 @@
 #pragma once
-
+#include "stdafx.h"
 #include <Windows.h>
 #include <d3d11.h>
 #include <string>

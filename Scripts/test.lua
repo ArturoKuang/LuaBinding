@@ -1,1 +1,3 @@
-print("hello world!")
+function Intialize()
+    print("hello world!")
+end

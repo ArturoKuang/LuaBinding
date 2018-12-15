@@ -19,8 +19,8 @@ public:
 	void Update(float dt);
 
 private:
-	std::string fileName;
 	sol::state lua;
+	std::string fileName;
 	sol::function updateTick;
 	sol::function startFunction;
 

@@ -66,8 +66,16 @@ void Game::Init()
 	CreateBasicGeometry();
 	scriptManager = new ScriptManager();
 	scriptManager->LoadScript("../Scripts/test.lua");
-
 	scriptManager->Initialize();
+
+	//Setup IMGUI
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui_ImplWin32_Init(hWnd);
+	ImGui_ImplDX11_Init(device, context);
+	ImGui::StyleColorsDark();
+
 	// Tell the input assembler stage of the pipeline what kind of
 	// geometric primitives (points, lines or triangles) we want to draw.  
 	// Essentially: "What kind of shape should the GPU draw with our data?"
@@ -235,7 +243,14 @@ void Game::Draw(float deltaTime, float totalTime)
 		0,     // Offset to the first index we want to use
 		0);    // Offset to add to each index when looking up vertices
 
-
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+	//create imgui test window 
+	ImGui::Begin("test");
+	ImGui::End();
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	// Present the back buffer to the user
 	//  - Puts the final frame we're drawing into the window so the user can see it
