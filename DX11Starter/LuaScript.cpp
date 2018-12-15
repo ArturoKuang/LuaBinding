@@ -41,7 +41,8 @@ void LuaScript::Init()
 
 void LuaScript::Update(float dt)
 {
-	updateTick(dt);
+	if(updateTick)
+		updateTick(dt);
 }
 
 void LuaScript::DefinedLuaTypes()

@@ -23,6 +23,7 @@ private:
 	std::string fileName;
 	sol::function updateTick;
 	sol::function startFunction;
+	sol::optional<sol::function> unsafe_update;
 
 	//Define lua states for scripts
 	void DefinedLuaTypes();
