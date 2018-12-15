@@ -5,7 +5,7 @@
 #include <DirectXMath.h>
 #include "Mesh.h"
 #include "ScriptManager.h"
-
+#include "TextPanel.h"
 
 class Game 
 	: public DXCore
@@ -52,5 +52,6 @@ private:
 
     Mesh* box = nullptr;
 	ScriptManager* scriptManager = nullptr;
+	Entity* textPanel = nullptr;
 };
 

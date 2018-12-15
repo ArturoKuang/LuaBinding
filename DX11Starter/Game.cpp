@@ -74,6 +74,7 @@ void Game::Init()
 	scriptManager = new ScriptManager();
 	scriptManager->LoadScript("../Scripts/test.lua");
 	scriptManager->Initialize();
+	textPanel = new TextPanel("something", .0f, .0f);
 
 	//Setup IMGUI
 	IMGUI_CHECKVERSION();
@@ -255,6 +256,9 @@ void Game::Draw(float deltaTime, float totalTime)
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
+
+	//Draw imgui 
+	textPanel->OnFrame(deltaTime);
 
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

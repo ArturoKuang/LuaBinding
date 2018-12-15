@@ -24,13 +24,12 @@ void TextPanel::SetMsg(char * msg)
 void TextPanel::OnFrame(float dt)
 {
 	ImGui::Begin(name);
+	ImGui::SetCursorPos(pos);
 	ImGui::LabelText("msg", text_msg);
-	ImGui::Separator();
 	ImGui::Button("Spawn Cubes", ImVec2(2.0f, 1.0f));
 	ImGui::Button("Delete Cubes", ImVec2(2.0f, 1.0f));
 	ImGui::End();
 }
 
-void TextPanel::OnStart()
-{
-}
+void TextPanel::OnStart()  {}
+

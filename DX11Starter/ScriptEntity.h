@@ -8,8 +8,8 @@ public:
 	ScriptEntity(char* n);
 	~ScriptEntity();
 
-	void OnStart();
-	void OnFrame(float dt);
+	void OnStart() override;
+	void OnFrame(float dt) override;
 private:
 	LuaScript* script = nullptr;
 };
