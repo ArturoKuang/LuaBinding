@@ -11,6 +11,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="SimpleShader.cpp" />
+    <ClCompile Include="ScriptManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DXCore.h" />
@@ -20,5 +21,6 @@
     <ClInclude Include="SimpleShader.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="assert.hpp" />
+    <ClInclude Include="ScriptManager.h" />
   </ItemGroup>
 </Project>

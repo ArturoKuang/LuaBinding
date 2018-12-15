@@ -4,7 +4,7 @@
 #include "SimpleShader.h"
 #include <DirectXMath.h>
 #include "Mesh.h"
-#include "LuaScript.h"
+#include "ScriptManager.h"
 
 class Game 
 	: public DXCore
@@ -49,6 +49,7 @@ private:
 	// determining how far the mouse moved in a single frame.
 	POINT prevMousePos;
 
-    Mesh* box;
+    Mesh* box = nullptr;
+	ScriptManager* scriptManager = nullptr;
 };
 

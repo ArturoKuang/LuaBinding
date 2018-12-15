@@ -6,6 +6,7 @@ LuaScript::LuaScript(const std::string & fileName)
 	std::cout << "\n=== running lua code ===" << std::endl;
 	lua.open_libraries(sol::lib::base);
 	
+	DefinedLuaTypes();
 
 	auto code_result = lua.script_file(fileName.c_str(), 
 		[](lua_State*, 
