@@ -12,9 +12,15 @@ Object3D::Object3D(char* n, Mesh* m) : Entity(n)
 Object3D::~Object3D()
 {
 	delete mesh;
+	delete pShader;
+	delete vShader;
 }
 
 void Object3D::OnFrame(float dt)
+{
+}
+
+void Object3D::OnStart()
 {
 }
 

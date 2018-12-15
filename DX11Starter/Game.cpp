@@ -147,13 +147,14 @@ void Game::CreateMatrices()
 // --------------------------------------------------------
 void Game::CreateBasicGeometry()
 {
-    // Create some temporary variables to represent colors
-	// - Not necessary, just makes things more readable
+	//Fill in with random cubes of different colors
 	XMFLOAT4 red = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
-	XMFLOAT4 green = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
-	XMFLOAT4 blue = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+	Mesh* redMesh = new Mesh("voxel.obj", device, red);
 
-    box = new Mesh("voxel.obj", device, red);
+	Object3D* redCube = new Object3D("redCube", redMesh);
+	redCube->setPixelShader(pixelShader);
+	redCube->setVertexShader(vertexShader);
+	entityManager.push_back(redCube);
 }
 
 
@@ -181,7 +182,10 @@ void Game::OnResize()
 void Game::Update(float deltaTime, float totalTime)
 {
 	scriptManager->Update(deltaTime);
-
+	for(auto i = 0; i < entityManager.size(); ++i)
+	{
+		entityManager[i]->OnFrame(deltaTime);
+	}
 	// Quit if the escape key is pressed
 	if (GetAsyncKeyState(VK_ESCAPE))
 		Quit();
@@ -205,45 +209,10 @@ void Game::Draw(float deltaTime, float totalTime)
 		1.0f,
 		0);
 
-	// Send data to shader variables
-	//  - Do this ONCE PER OBJECT you're drawing
-	//  - This is actually a complex process of copying data to a local buffer
-	//    and then copying that entire buffer to the GPU.  
-	//  - The "SimpleShader" class handles all of that for you.
-	vertexShader->SetMatrix4x4("world", worldMatrix);
-	vertexShader->SetMatrix4x4("view", viewMatrix);
-	vertexShader->SetMatrix4x4("projection", projectionMatrix);
-
-	// Once you've set all of the data you care to change for
-	// the next draw call, you need to actually send it to the GPU
-	//  - If you skip this, the "SetMatrix" calls above won't make it to the GPU!
-	vertexShader->CopyAllBufferData();
-
-	// Set the vertex and pixel shaders to use for the next Draw() command
-	//  - These don't technically need to be set every frame...YET
-	//  - Once you start applying different shaders to different objects,
-	//    you'll need to swap the current shaders before each draw
-	vertexShader->SetShader();
-	pixelShader->SetShader();
-
-	// Set buffers in the input assembler
-	//  - Do this ONCE PER OBJECT you're drawing, since each object might
-	//    have different geometry.
-    ID3D11Buffer* vBuffer = box->GetVertexBuffer();
-	UINT stride = sizeof(Vertex);
-	UINT offset = 0;
-	context->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset);
-	context->IASetIndexBuffer(box->GetIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
-
-	// Finally do the actual drawing
-	//  - Do this ONCE PER OBJECT you intend to draw
-	//  - This will use all of the currently set DirectX "stuff" (shaders, buffers, etc)
-	//  - DrawIndexed() uses the currently set INDEX BUFFER to look up corresponding
-	//     vertices in the currently set VERTEX BUFFER
-	context->DrawIndexed(
-		box->GetIndexCount(),     // The number of indices to use (we could draw a subset if we wanted)
-		0,     // Offset to the first index we want to use
-		0);    // Offset to add to each index when looking up vertices
+	for (auto i = 0; i < entityManager.size(); ++i)
+	{
+		entityManager[i]->Draw(context, viewMatrix, projectionMatrix);
+	}
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();

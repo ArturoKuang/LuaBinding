@@ -5,7 +5,7 @@
 #include <DirectXMath.h>
 #include "Mesh.h"
 #include "ScriptManager.h"
-
+#include "Object3D.h"
 
 class Game 
 	: public DXCore
@@ -50,7 +50,7 @@ private:
 	// determining how far the mouse moved in a single frame.
 	POINT prevMousePos;
 
-    Mesh* box = nullptr;
+	std::vector<Entity*> entityManager;
 	ScriptManager* scriptManager = nullptr;
 };
 
