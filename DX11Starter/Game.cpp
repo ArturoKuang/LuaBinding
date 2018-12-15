@@ -46,10 +46,17 @@ Game::~Game()
 	if (vertexBuffer) { vertexBuffer->Release(); }
 	if (indexBuffer) { indexBuffer->Release(); }
 
+	//Release ImGui
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+
 	// Delete our simple shader objects, which
 	// will clean up their own internal DirectX stuff
 	delete vertexShader;
 	delete pixelShader;
+	delete box;
+	delete scriptManager;
 }
 
 // --------------------------------------------------------

@@ -4,7 +4,13 @@
 
 ScriptManager::ScriptManager(){}
 
-ScriptManager::~ScriptManager(){}
+ScriptManager::~ScriptManager()
+{
+	for (auto it : scripts)
+	{
+		delete it;
+	}
+}
 
 void ScriptManager::LoadScript(const std::string & fileName)
 {

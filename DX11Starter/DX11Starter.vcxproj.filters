@@ -45,6 +45,15 @@
     <ClCompile Include="..\additional\Imgui\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
+    <ClCompile Include="TextPanel.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptEntity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LuaScript.h">
@@ -96,6 +105,18 @@
       <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TextPanel.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptEntity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Imgui">
@@ -112,6 +133,9 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{340fa5e7-b6c6-4395-9441-495b7c16d3ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{35d2c04d-c0fc-40a3-99eb-9817f8e9862a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

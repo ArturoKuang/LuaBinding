@@ -6,8 +6,8 @@ using namespace DirectX;
 class Entity
 {
 protected:
-	Entity* parent;
-	char* name;
+	Entity* parent = nullptr;
+	char* name = nullptr;
 public:
 	Entity(char* n) { name = n; }
 	virtual void OnStart() = 0;
