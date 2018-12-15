@@ -64,7 +64,8 @@ void Game::Init()
 	LoadShaders();
 	CreateMatrices();
 	CreateBasicGeometry();
-
+	LuaScript* test = new LuaScript("../Scripts/test.lua");
+	
 	// Tell the input assembler stage of the pipeline what kind of
 	// geometric primitives (points, lines or triangles) we want to draw.  
 	// Essentially: "What kind of shape should the GPU draw with our data?"

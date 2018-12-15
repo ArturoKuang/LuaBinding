@@ -1,12 +1,11 @@
 
 #include <Windows.h>
-#include "Game.h"
-#include "sol.hpp"
 #include <stdio.h>
+#include "Game.h"
 
-//--------------------------------------------------------
-//Entry point for a graphical (non-console) Windows application
-//--------------------------------------------------------
+// --------------------------------------------------------
+// Entry point for a graphical (non-console) Windows application
+// --------------------------------------------------------
 int WINAPI WinMain(
 	HINSTANCE hInstance,		// The handle to this app's instance
 	HINSTANCE hPrevInstance,	// A handle to the previous instance of the app (always NULL)
@@ -19,7 +18,6 @@ int WINAPI WinMain(
 	//  - You may want to use something more advanced, like Visual Leak Detector
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
-
 	// Ensure "Current Directory" (relative path) is always the .exe's folder
 	// - Without this, the relative path is different when running through VS
 	//    and when running the .exe directly, which makes it a pain to load files
@@ -45,7 +43,6 @@ int WINAPI WinMain(
 			SetCurrentDirectory(currentDir);
 		}
 	}
-
 	// Create the Game object using
 	// the app handle we got from WinMain
 	Game dxGame(hInstance);
@@ -63,23 +60,11 @@ int WINAPI WinMain(
 	hr = dxGame.InitDirectX();
 	if(FAILED(hr)) return hr;
 
+	std::cout << "=== opening a state ===" << std::endl;
+
 	// Begin the message and game loop, and then return
 	// whatever we get back once the game loop is over
 	return dxGame.Run();
 }
 
-
-//int main(int argc, char* argv[]) {
-//
-//	sol::state lua;
-//	lua.open_libraries(sol::lib::base, sol::lib::coroutine, sol::lib::string, sol::lib::io);
-//
-//	lua.script("print('bark bark bark!')");
-//
-//    int s;
-//
-//    std::cin >> s;
-//
-//	return 0;
-//}
 
