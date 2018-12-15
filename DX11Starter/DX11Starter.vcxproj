@@ -135,6 +135,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\additional\Imgui\imgui.cpp" />
+    <ClCompile Include="..\additional\Imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\additional\Imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\additional\Imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\additional\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="DXCore.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LuaScript.cpp" />
@@ -144,6 +149,14 @@
     <ClCompile Include="SimpleShader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\additional\Imgui\imconfig.h" />
+    <ClInclude Include="..\additional\Imgui\imgui.h" />
+    <ClInclude Include="..\additional\Imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="..\additional\Imgui\imgui_impl_win32.h" />
+    <ClInclude Include="..\additional\Imgui\imgui_internal.h" />
+    <ClInclude Include="..\additional\Imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\additional\Imgui\imstb_textedit.h" />
+    <ClInclude Include="..\additional\Imgui\imstb_truetype.h" />
     <ClInclude Include="assert.hpp" />
     <ClInclude Include="DXCore.h" />
     <ClInclude Include="Game.h" />
@@ -151,6 +164,7 @@
     <ClInclude Include="LuaScript.h" />
     <ClInclude Include="ScriptManager.h" />
     <ClInclude Include="SimpleShader.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +188,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\additional\Imgui\.travis.yml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\additional\Imgui\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
