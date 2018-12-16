@@ -6,6 +6,7 @@ EntityManager* EntityManager::Instance = nullptr;
 EntityManager::EntityManager()
 {
 	entities = std::vector<Entity*>();
+	size = 0;
 }
 
 EntityManager::~EntityManager()
@@ -37,12 +38,40 @@ void EntityManager::ReleaseInstance()
 void EntityManager::AddEntity(Entity * e)
 {
 	entities.emplace_back(e);
+	size++;
+}
+
+void EntityManager::SpawnRandomInstanceOf(char * filename, ID3D11Device * device, SimplePixelShader* pShader, SimpleVertexShader* vShader)
+{
+	//float between 0.0 and 1.0
+	float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+	float x = ((static_cast <float> (rand()) / float(RAND_MAX)) * 6) - 3;
+	float y = ((static_cast <float> (rand()) / float(RAND_MAX)) * 6) - 3;
+	float z = ((static_cast <float> (rand()) / float(RAND_MAX)) * 6) - 3;
+
+	float w = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	float h = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	float d = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+	XMFLOAT4 color(r, g, b, 1.0f);
+	Mesh* mesh = new Mesh(filename, device, color);
+	//char* name = strcat("Random ", filename);
+	Object3D* obj = new Object3D(filename, mesh);
+	obj->setPixelShader(pShader);
+	obj->setVertexShader(vShader);
+	obj->setPosition(XMFLOAT3(x, y, z));
+	obj->setScale(XMFLOAT3(w, h, d));
+	AddEntity(obj);
 }
 
 void EntityManager::Remove()
 {
 	Entity* e = entities.back();
 	entities.pop_back();
+	size--;
 	delete e;
 }
 

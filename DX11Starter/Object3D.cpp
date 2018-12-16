@@ -18,6 +18,11 @@ Object3D::~Object3D()
 
 void Object3D::OnFrame(float dt)
 {
+	XMMATRIX tr = XMMatrixTranslation(position.x, position.y, position.z);
+	XMMATRIX ro = XMMatrixRotationRollPitchYaw(rotation.x, rotation.y, rotation.z);
+	XMMATRIX sc = XMMatrixScaling(scale.x, scale.y, scale.z);
+	// Store the matrix so it's sent to the GPU during draw
+	XMStoreFloat4x4(&worldMatrix, XMMatrixTranspose(sc * ro * tr));
 }
 
 void Object3D::OnStart()
