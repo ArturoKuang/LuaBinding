@@ -31,7 +31,7 @@ Game::Game(HINSTANCE hInstance)
 	CreateConsoleWindow(500, 120, 32, 120);
 	printf("Console window created successfully.  Feel free to printf() here.");
 #endif
-	
+
 }
 
 // --------------------------------------------------------
@@ -55,7 +55,6 @@ Game::~Game()
 	// will clean up their own internal DirectX stuff
 	delete vertexShader;
 	delete pixelShader;
-	delete box;
 	delete scriptManager;
 }
 
@@ -74,7 +73,6 @@ void Game::Init()
 	scriptManager = new ScriptManager();
 	scriptManager->LoadScript("../Scripts/test.lua");
 	scriptManager->Initialize();
-	textPanel = new TextPanel("something", .0f, .0f);
 
 	//Setup IMGUI
 	IMGUI_CHECKVERSION();
@@ -83,6 +81,7 @@ void Game::Init()
 	ImGui_ImplWin32_Init(hWnd);
 	ImGui_ImplDX11_Init(device, context);
 	ImGui::StyleColorsDark();
+	textPanel = new TextPanel("something", .0f, .0f);
 
 	// Tell the input assembler stage of the pipeline what kind of
 	// geometric primitives (points, lines or triangles) we want to draw.  
@@ -190,7 +189,7 @@ void Game::OnResize()
 void Game::Update(float deltaTime, float totalTime)
 {
 	scriptManager->Update(deltaTime);
-	for(auto i = 0; i < entityManager.size(); ++i)
+	for (auto i = 0; i < entityManager.size(); ++i)
 	{
 		entityManager[i]->OnFrame(deltaTime);
 	}
@@ -226,7 +225,6 @@ void Game::Draw(float deltaTime, float totalTime)
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	//Draw imgui 
 	textPanel->OnFrame(deltaTime);
 
 	ImGui::Render();

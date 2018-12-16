@@ -18,5 +18,6 @@ public:
 	void SetMsg(char* msg);
 	void OnFrame(float dt) override;
 	void OnStart() override;
+	void Draw(ID3D11DeviceContext* ctx, XMFLOAT4X4 view, XMFLOAT4X4 projection) override;
 };
 
