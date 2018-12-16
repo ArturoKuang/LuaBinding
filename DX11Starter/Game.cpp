@@ -51,6 +51,8 @@ Game::~Game()
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
 
+	entityManager->ReleaseInstance();
+
 	// Delete our simple shader objects, which
 	// will clean up their own internal DirectX stuff
 	delete vertexShader;
@@ -67,12 +69,19 @@ void Game::Init()
 	// Helper methods for loading shaders, creating some basic
 	// geometry to draw and some simple camera matrices.
 	//  - You'll be expanding and/or replacing these later
+	//Intilize Entity Manager
+	entityManager = EntityManager::GetInstance();
+	Entity* textPanel = new TextPanel("something", .0f, .0f);
+	entityManager->AddEntity(textPanel);
+
 	LoadShaders();
 	CreateMatrices();
 	CreateBasicGeometry();
+	//Intialize scripts
 	scriptManager = new ScriptManager();
 	scriptManager->LoadScript("../Scripts/test.lua");
 	scriptManager->Initialize();
+
 
 	//Setup IMGUI
 	IMGUI_CHECKVERSION();
@@ -81,7 +90,6 @@ void Game::Init()
 	ImGui_ImplWin32_Init(hWnd);
 	ImGui_ImplDX11_Init(device, context);
 	ImGui::StyleColorsDark();
-	textPanel = new TextPanel("something", .0f, .0f);
 
 	// Tell the input assembler stage of the pipeline what kind of
 	// geometric primitives (points, lines or triangles) we want to draw.  
@@ -161,7 +169,7 @@ void Game::CreateBasicGeometry()
 	Object3D* redCube = new Object3D("redCube", redMesh);
 	redCube->setPixelShader(pixelShader);
 	redCube->setVertexShader(vertexShader);
-	entityManager.push_back(redCube);
+	entityManager->AddEntity(redCube);
 }
 
 
@@ -189,10 +197,8 @@ void Game::OnResize()
 void Game::Update(float deltaTime, float totalTime)
 {
 	scriptManager->Update(deltaTime);
-	for (auto i = 0; i < entityManager.size(); ++i)
-	{
-		entityManager[i]->OnFrame(deltaTime);
-	}
+	entityManager->Update(deltaTime);
+
 	// Quit if the escape key is pressed
 	if (GetAsyncKeyState(VK_ESCAPE))
 		Quit();
@@ -216,20 +222,8 @@ void Game::Draw(float deltaTime, float totalTime)
 		1.0f,
 		0);
 
-	for (auto i = 0; i < entityManager.size(); ++i)
-	{
-		entityManager[i]->Draw(context, viewMatrix, projectionMatrix);
-	}
-
-	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-
-	textPanel->OnFrame(deltaTime);
-
-	ImGui::Render();
-	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-
+	entityManager->Draw(context, viewMatrix, projectionMatrix);
+	
 	// Present the back buffer to the user
 	//  - Puts the final frame we're drawing into the window so the user can see it
 	//  - Do this exactly ONCE PER FRAME (always at the very end of the frame)

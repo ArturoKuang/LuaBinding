@@ -5,6 +5,7 @@
 #include <DirectXMath.h>
 #include "Mesh.h"
 #include "ScriptManager.h"
+#include "EntityManager.h"
 #include "TextPanel.h"
 #include "Object3D.h"
 
@@ -51,8 +52,7 @@ private:
 	// determining how far the mouse moved in a single frame.
 	POINT prevMousePos;
 
-	std::vector<Entity*> entityManager;
 	ScriptManager* scriptManager = nullptr;
-	Entity* textPanel = nullptr;
+	EntityManager* entityManager = nullptr;
 };
 

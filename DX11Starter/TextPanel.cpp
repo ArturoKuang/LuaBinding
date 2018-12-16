@@ -21,7 +21,11 @@ void TextPanel::SetMsg(char * msg)
 }
 
 
-void TextPanel::OnFrame(float dt)
+void TextPanel::OnFrame(float dt){}
+
+void TextPanel::OnStart()  {}
+
+void TextPanel::Draw(ID3D11DeviceContext * ctx, XMFLOAT4X4 view, XMFLOAT4X4 projection)
 {
 	ImGui::Begin(name);
 	if (ImGui::Button("Spawn Cube"))
@@ -37,8 +41,4 @@ void TextPanel::OnFrame(float dt)
 	ImGui::LabelText("msg", text_msg);
 	ImGui::End();
 }
-
-void TextPanel::OnStart()  {}
-
-void TextPanel::Draw(ID3D11DeviceContext * ctx, XMFLOAT4X4 view, XMFLOAT4X4 projection){}
 

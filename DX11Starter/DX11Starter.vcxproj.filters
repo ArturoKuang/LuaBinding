@@ -54,6 +54,9 @@
     <ClCompile Include="Object3D.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LuaScript.h">
@@ -115,6 +118,9 @@
       <Filter>Entity</Filter>
     </ClInclude>
     <ClInclude Include="Object3D.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
       <Filter>Entity</Filter>
     </ClInclude>
   </ItemGroup>

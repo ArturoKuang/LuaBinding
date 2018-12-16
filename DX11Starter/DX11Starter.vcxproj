@@ -141,6 +141,7 @@
     <ClCompile Include="..\additional\Imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="..\additional\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="DXCore.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LuaScript.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="assert.hpp" />
     <ClInclude Include="DXCore.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="LuaScript.h" />
