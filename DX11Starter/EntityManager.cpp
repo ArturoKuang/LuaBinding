@@ -37,11 +37,17 @@ void EntityManager::ReleaseInstance()
 
 void EntityManager::AddEntity(Entity * e)
 {
+	Object3D* obj = dynamic_cast<Object3D*>(e);
+	if (obj)
+	{
+		obj->setPixelShader(pShader);
+		obj->setVertexShader(vShader);
+	}
 	entities.emplace_back(e);
 	size++;
 }
 
-void EntityManager::SpawnRandomInstanceOf(char * filename, ID3D11Device * device, SimplePixelShader* pShader, SimpleVertexShader* vShader)
+Entity* EntityManager::SpawnRandomInstanceOf(char * filename, ID3D11Device * device)
 {
 	//float between 0.0 and 1.0
 	float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -60,11 +66,10 @@ void EntityManager::SpawnRandomInstanceOf(char * filename, ID3D11Device * device
 	Mesh* mesh = new Mesh(filename, device, color);
 	//char* name = strcat("Random ", filename);
 	Object3D* obj = new Object3D(filename, mesh);
-	obj->setPixelShader(pShader);
-	obj->setVertexShader(vShader);
 	obj->setPosition(XMFLOAT3(x, y, z));
 	obj->setScale(XMFLOAT3(w, h, d));
 	AddEntity(obj);
+	return obj;
 }
 
 void EntityManager::Remove()

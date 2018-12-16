@@ -16,7 +16,7 @@ public:
 	void AddEntity(Entity* e);
 	size_t GetSize() { return size; }
 	std::vector<Entity*> GetEntities(){ return entities; }
-	void SpawnRandomInstanceOf(char* filename, ID3D11Device* device, SimplePixelShader* pShader, SimpleVertexShader* vShader);
+	Entity* SpawnRandomInstanceOf(char* filename, ID3D11Device* device);
 	void Remove();
 	void Init();
 	void Update(float dt);
@@ -24,11 +24,15 @@ public:
 		ID3D11DeviceContext* context, 
 		XMFLOAT4X4 viewMatrix, 
 		XMFLOAT4X4 projectionMatrix);
+	void setPixelShader(SimplePixelShader* p) { pShader = p; }
+	void setVertexShader(SimpleVertexShader* v) { vShader = v; }
 
 private:
 	EntityManager();
 	~EntityManager();
 	size_t size;
+	SimplePixelShader* pShader;
+	SimpleVertexShader* vShader;
 	static EntityManager* Instance;
 	std::vector<Entity*> entities;
 };
