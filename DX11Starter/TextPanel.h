@@ -9,10 +9,16 @@ class TextPanel : public Entity
 private:
 	ImVec2 pos = ImVec2();
 	char* text_msg = nullptr;
-	std::vector<ScriptEntity> scripts;
+
+	LuaScript* AddCube = nullptr;
+	LuaScript* RemoveCube = nullptr;
+	ID3D11Device* device = nullptr;
+
+	void LoadScripts();
+
 public:
-	TextPanel(char* name, float x, float y);
-	TextPanel(char* name, float x, float y, char* msg);
+	TextPanel(char* name, float x, float y, ID3D11Device* device);
+	TextPanel(char* name, float x, float y, char* msg, ID3D11Device* device);
 	~TextPanel();
 
 	void SetMsg(char* msg);

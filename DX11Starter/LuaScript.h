@@ -12,39 +12,62 @@
 class LuaScript
 {
 public:
-	LuaScript(const std::string& fileName, ID3D11Device* device);
+	LuaScript(const std::string& fileName);
 	~LuaScript();
 
-	//Intializes lua script and calls Init in lua
+	//callback function when intializing lua script and calls Init in lua
 	void Init();
+	void Load();
+	void OnClick();
 
 	//Calls update on lua script
 	void Update(float dt);
 	void SetDevice(ID3D11Device* device);
+	void SetEntity(Object3D* e);
 
 private:
 	sol::state lua;
 	std::string fileName;
 	sol::function updateTick;
 	sol::function startFunction;
+	sol::function onClick;
 	sol::optional<sol::function> unsafe_update;
-	//Directx
+	
 	ID3D11Device* device = nullptr;
 	EntityManager* entityManager = nullptr;
+	Object3D* entity = nullptr;
+
+	void EntitySetPos(float x, float y, float z);
+	void RemoveEntity();
 
 	//Define lua states for scripts
 	void DefinedLuaTypes();
 
-	//Data Definitions
+	//Data Definitions 
+	struct MeshCreationData
+	{
+		MeshCreationData(char* fileName, ID3D11Device* device, float r, float g, float b, float a)
+		{
+			XMFLOAT4 color = XMFLOAT4(r, g, b, a);
+			mesh = new Mesh(fileName, device, color);
+		}
+
+		Mesh* GetMesh() { return mesh; };
+
+		private:
+			Mesh* mesh = nullptr;
+			ID3D11Device* device = nullptr;
+	};
+
 	
 	struct Object3DCreationData
 	{
 		Object3DCreationData(
-			std::string name)
+			std::string name,
+			ID3D11Device * device)
 		{
 			entityManager = EntityManager::GetInstance();
-			entity = new Object3D((char*)name.c_str(), mesh);
-			entityManager->AddEntity(entity);
+			entity = dynamic_cast<Object3D*>(entityManager->SpawnRandomInstanceOf((char*)name.c_str(), device));
 		}
 
 		Object3DCreationData(
@@ -70,9 +93,9 @@ private:
 		}
 
 		private:
-			Object3D* entity;
-			ID3D11Device* device;
-			EntityManager* entityManager;
+			Object3D* entity = nullptr;
+			ID3D11Device* device = nullptr;
+			EntityManager* entityManager = nullptr;
 	};
 };
 

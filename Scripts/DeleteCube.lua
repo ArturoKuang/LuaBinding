@@ -1,0 +1,3 @@
+function OnClick()
+    RemoveEntity()
+end

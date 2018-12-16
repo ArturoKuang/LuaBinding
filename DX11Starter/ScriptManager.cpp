@@ -14,7 +14,9 @@ ScriptManager::~ScriptManager()
 
 void ScriptManager::LoadScript(const std::string & fileName, ID3D11Device* device)
 {
-	LuaScript* script = new LuaScript(fileName, device);
+	LuaScript* script = new LuaScript(fileName);
+	script->SetDevice(device);
+	script->Load();
 	scripts.emplace_back(script);
 }
 

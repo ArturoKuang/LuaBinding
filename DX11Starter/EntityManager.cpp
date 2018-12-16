@@ -9,14 +9,7 @@ EntityManager::EntityManager()
 	size = 0;
 }
 
-EntityManager::~EntityManager()
-{
-	for (auto e : entities) 
-	{
-		delete e;
-	}
-	entities.clear();
-}
+EntityManager::~EntityManager(){}
 
 EntityManager * EntityManager::GetInstance()
 {
@@ -28,6 +21,11 @@ EntityManager * EntityManager::GetInstance()
 
 void EntityManager::ReleaseInstance()
 {
+	for (auto e : entities)
+	{
+		delete e;
+	}
+
 	if (Instance != nullptr)
 	{
 		delete Instance;
@@ -101,8 +99,8 @@ void EntityManager::Draw(ID3D11DeviceContext * context,
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	for (auto e : entities)
-		e->Draw(context, viewMatrix, projectionMatrix);
+	for (int i = 0; i < entities.size(); ++i)
+		entities[i]->Draw(context, viewMatrix, projectionMatrix);
 
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

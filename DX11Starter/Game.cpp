@@ -71,7 +71,7 @@ void Game::Init()
 	//  - You'll be expanding and/or replacing these later
 	//Intilize Entity Manager
 	entityManager = EntityManager::GetInstance();
-	Entity* textPanel = new TextPanel("something", .0f, .0f);
+	Entity* textPanel = new TextPanel("something", .0f, .0f, device);
 	entityManager->AddEntity(textPanel);
 
 	LoadShaders();
@@ -79,7 +79,7 @@ void Game::Init()
 	CreateBasicGeometry();
 	//Intialize scripts
 	scriptManager = new ScriptManager();
-	scriptManager->LoadScript("../Scripts/test.lua", device);
+	scriptManager->LoadScript("../Scripts/SpawnCubes.lua", device);
 	scriptManager->Initialize();
 
 
@@ -164,9 +164,8 @@ void Game::CreateMatrices()
 // Creates the geometry we're going to draw - a single triangle for now
 // --------------------------------------------------------
 void Game::CreateBasicGeometry()
-{
-	for (auto i = 0; i < 40; i++)
-		entityManager->SpawnRandomInstanceOf("voxel.obj", device);
+{	/*for (auto i = 0; i < 40; i++)
+		entityManager->SpawnRandomInstanceOf("voxel.obj", device);*/
 }
 
 
