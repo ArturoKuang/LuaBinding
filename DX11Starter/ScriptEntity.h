@@ -5,7 +5,7 @@
 class ScriptEntity : public Entity
 {
 public:
-	ScriptEntity(char* n);
+	ScriptEntity(char* n, ID3D11Device* device);
 	~ScriptEntity();
 
 	void OnStart() override;

@@ -79,7 +79,7 @@ void Game::Init()
 	CreateBasicGeometry();
 	//Intialize scripts
 	scriptManager = new ScriptManager();
-	scriptManager->LoadScript("../Scripts/test.lua");
+	scriptManager->LoadScript("../Scripts/test.lua", device);
 	scriptManager->Initialize();
 
 

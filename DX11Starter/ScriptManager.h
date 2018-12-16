@@ -9,7 +9,7 @@ public:
 	ScriptManager();
 	~ScriptManager();
 
-	void LoadScript(const std::string& fileName);
+	void LoadScript(const std::string& fileName, ID3D11Device* device);
 	void Initialize();
 	void Update(float dt);
 

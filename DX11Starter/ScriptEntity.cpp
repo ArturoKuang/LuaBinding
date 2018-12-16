@@ -1,8 +1,8 @@
 #include "ScriptEntity.h"
 
-ScriptEntity::ScriptEntity(char * n) : Entity(n)
+ScriptEntity::ScriptEntity(char * n, ID3D11Device* device) : Entity(n)
 {
-	script = new LuaScript(n);
+	script = new LuaScript(n, device);
 }
 
 void ScriptEntity::OnStart()
