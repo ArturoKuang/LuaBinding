@@ -110,6 +110,9 @@ void Game::LoadShaders()
 
 	pixelShader = new SimplePixelShader(device, context);
 	pixelShader->LoadShaderFile(L"PixelShader.cso");
+
+	entityManager->setPixelShader(pixelShader);
+	entityManager->setVertexShader(vertexShader);
 }
 
 
@@ -163,7 +166,7 @@ void Game::CreateMatrices()
 void Game::CreateBasicGeometry()
 {
 	for (auto i = 0; i < 40; i++)
-		entityManager->SpawnRandomInstanceOf("voxel.obj", device, pixelShader, vertexShader);
+		entityManager->SpawnRandomInstanceOf("voxel.obj", device);
 }
 
 
