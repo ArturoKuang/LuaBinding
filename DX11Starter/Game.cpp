@@ -162,14 +162,8 @@ void Game::CreateMatrices()
 // --------------------------------------------------------
 void Game::CreateBasicGeometry()
 {
-	//Fill in with random cubes of different colors
-	XMFLOAT4 red = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
-	Mesh* redMesh = new Mesh("voxel.obj", device, red);
-
-	Object3D* redCube = new Object3D("redCube", redMesh);
-	redCube->setPixelShader(pixelShader);
-	redCube->setVertexShader(vertexShader);
-	entityManager->AddEntity(redCube);
+	for (auto i = 0; i < 40; i++)
+		entityManager->SpawnRandomInstanceOf("voxel.obj", device, pixelShader, vertexShader);
 }
 
 
@@ -197,6 +191,16 @@ void Game::OnResize()
 void Game::Update(float deltaTime, float totalTime)
 {
 	scriptManager->Update(deltaTime);
+
+	for (auto i = 0; i < entityManager->GetSize(); ++i)
+	{
+		Object3D* obj = dynamic_cast<Object3D*>(entityManager->GetEntities()[i]);
+		if (obj)
+		{
+			obj->Move(sin(totalTime) * deltaTime, cos(totalTime) * deltaTime, 0.0f);
+		}
+	}
+
 	entityManager->Update(deltaTime);
 
 	// Quit if the escape key is pressed
